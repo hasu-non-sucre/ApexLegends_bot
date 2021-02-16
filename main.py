@@ -38,8 +38,9 @@ today = datetime.today()
 yesterday = today - timedelta(days=1)
 
 # ツイート
-api.update_status("ApexLegends:" + datetime.strftime(yesterday, '%Y-%m-%d') +
-                  "のキル数は{}です。現在のトータルキル数は{}です。".format(int(now_kills)-int(last_kills), now_kills))
+yesterday_date = datetime.strftime(yesterday, '%Y-%m-%d')
+yesterday_kills = int(now_kills)-int(last_kills)
+api.update_status(f"ApexLegends: {yesterday_date} のキル数は{yesterday_kills}です。現在のトータルキル数は{now_kills}です。")
 
 # last_kills.txtの更新
 with open("last_kills.txt", 'w', encoding='UTF-8') as f:
