@@ -26,11 +26,9 @@ header = {"TRN-Api-key": 'TRN_API_KEY'}
 res = requests.get(url, headers=header).json()
 
 # 前回トータルキル数の読み込み
-f = open("last_kills.txt", 'r', encoding='UTF-8')
+with open("last_kills.txt", 'r', encoding='UTF-8') as f:
+    last_kills = f.read()
 
-last_kills = f.read()
-
-f.close()
 
 # 現在のトータルキル数の読み込み
 now_kills = int(res['data']['segments'][0]['stats']['kills']['value'])
@@ -44,8 +42,5 @@ api.update_status("ApexLegends:" + datetime.strftime(yesterday, '%Y-%m-%d') +
                   "のキル数は{}です。現在のトータルキル数は{}です。".format(int(now_kills)-int(last_kills), now_kills))
 
 # last_kills.txtの更新
-f = open("last_kills.txt", 'w', encoding='UTF-8')
-
-f.write(str(now_kills))
-
-f.close()
+with open("last_kills.txt", 'w', encoding='UTF-8') as f:
+    f.write(str(now_kills))
