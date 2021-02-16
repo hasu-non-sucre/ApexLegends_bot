@@ -1,0 +1,2 @@
+# ApexLegends_bot
+ApexLegendsの前日のキル数と総キル数をツイートしてくれる
