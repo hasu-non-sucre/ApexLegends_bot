@@ -1,8 +1,11 @@
 # ライブラリのインポート
-import tweepy
-import requests, json, os
+import json
+import os
+from datetime import date, datetime, timedelta
 from pprint import pprint
-from datetime import datetime, date, timedelta
+
+import requests
+import tweepy
 
 # api-keyとかの準備
 ## twitter
