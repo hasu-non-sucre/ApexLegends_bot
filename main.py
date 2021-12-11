@@ -33,14 +33,17 @@ with open("last_kills.txt", 'r', encoding='UTF-8') as f:
 # 現在のトータルキル数の読み込み
 now_kills = int(res['data']['segments'][0]['stats']['kills']['value'])
 
+# last_kills.txtの最終更新日の取得
+last_kill_day = datetime.fromtimestamp(os.path.getmtime("last_kills.txt"))
+
 # 時刻の設定
 today = datetime.today()
-yesterday = today - timedelta(days=1)
+time_delta = today - last_kill_day
 
 # ツイート
 yesterday_date = datetime.strftime(yesterday, '%Y-%m-%d')
-yesterday_kills = int(now_kills)-int(last_kills)
-api.update_status(f"ApexLegends: {yesterday_date} のキル数は{yesterday_kills}です。現在のトータルキル数は{now_kills}です。")
+kills_delta = (int(now_kills)-int(last_kills)).days
+api.update_status(f"ApexLegends: 直近{time_delta}日間のキル数は{kills_delta}です。現在のトータルキル数は{now_kills}です。")
 
 # last_kills.txtの更新
 with open("last_kills.txt", 'w', encoding='UTF-8') as f:
