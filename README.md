@@ -1,2 +1,2 @@
 # ApexLegends_bot
-ApexLegendsの前日のキル数と総キル数をツイートしてくれる
+ApexLegendsの前更新日との比較キル数と総キル数をツイートしてくれる
